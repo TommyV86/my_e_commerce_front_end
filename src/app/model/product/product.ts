@@ -3,11 +3,11 @@ import { TypeProduct } from "../typeProduct/type-product";
 
 export class Product {
 
-    private _name!: string | null;
-    private _description!: string | null;
-    private _price!: number | null;
-    private _productExemplaries!: ProductExemplary[] | null;
-    private _typeProduct!: TypeProduct | null;
+    _name!: string | null;
+    _description!: string | null;
+    _price!: number | null;
+    _productExemplaries!: ProductExemplary[] | null;
+    _typeProduct!: TypeProduct | null;
 
 
     public getName() : string | null {
