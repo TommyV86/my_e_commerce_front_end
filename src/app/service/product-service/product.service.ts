@@ -8,7 +8,9 @@ import { ConstantUtility } from 'src/app/utility/constant/constant.utility';
 })
 export class ProductService {
 
-  private urlGetAll : string = "product/all";
+  private urlRoute : string = "product/";
+  private urlGetAll : string = "all";
+  private urlGetByName : string = "getByName";
 
   public constructor(
     private httpClient : HttpClient, 
@@ -16,7 +18,11 @@ export class ProductService {
   ) { }
 
 
-  public getAll():Observable<any>{
-    return this.httpClient.get(this.constantUtil.getLocalHost() + this.urlGetAll);
+  public getAll() : Observable<any> {
+    return this.httpClient.get(this.constantUtil.getLocalHost() + this.urlRoute + this.urlGetAll);
+  }
+
+  public getByName(name: string) : Observable<any>{
+    return this.httpClient.get(`${this.constantUtil.getLocalHost() + this.urlRoute + this.urlGetByName}?name=${name}`);
   }
 }

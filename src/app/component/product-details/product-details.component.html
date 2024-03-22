@@ -1,0 +1,22 @@
+<a [routerLink]="['']">retour</a>
+
+<div *ngIf="loading" class="loading">
+    <p class="text-loading">Chargement du produit ...</p>
+    <div class="spinner-border text-warning" role="status"></div>
+</div>
+
+<div *ngIf="!loading">
+
+    <div class="card" style="width: 18rem;">
+
+        <img src="../../../assets/{{product._name}}.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">{{product._name}}</h5>
+        <p class="card-text">{{product._price}} € / kg</p>
+        <p class="card-text">{{product._description}}</p>
+        <a [routerLink]="" class="btn btn-primary">ajout au panier</a>
+        </div>
+
+    </div>
+
+</div>
