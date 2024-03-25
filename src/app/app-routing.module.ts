@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomePageComponent } from './component/home-page/home-page.component';
-import { ProductDetailsComponent } from './component/product-details/product-details.component';
 
 const routes: Routes = [
-  { path: "", component: HomePageComponent },
-  { path: 'details-product/:name', component: ProductDetailsComponent },
-];
+  {
+    path:'',
+    loadChildren: () => import('./users-module/public/public.module').then((m) => m.PublicModule),
+  },
+
+  {
+    path:'client',
+    loadChildren: () => import('./users-module/client/client.module').then((m) => m.ClientModule),
+  }
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

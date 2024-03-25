@@ -14,7 +14,7 @@
         <h5 class="card-title">{{product._name}}</h5>
         <p class="card-text">{{product._price}} € / kg</p>
         <p class="card-text">{{product._description}}</p>
-        <a [routerLink]="" class="btn btn-primary">ajout au panier</a>
+        <a [routerLink]="" class="btn btn-primary" (click)="add()">ajout au panier</a>
         </div>
 
     </div>

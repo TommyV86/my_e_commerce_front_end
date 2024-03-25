@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Cart } from 'src/app/model/cart/cart';
+import { ProductExemplary } from 'src/app/model/product-exemplary/product-exemplary';
 import { Product } from 'src/app/model/product/product';
 import { ProductService } from 'src/app/service/product-service/product.service';
 
@@ -10,13 +12,17 @@ import { ProductService } from 'src/app/service/product-service/product.service'
 })
 export class ProductDetailsComponent {
 
+
+  protected products : Product[] | null = [];
   protected productName!: string;
   protected product!: Product;
   protected loading!: boolean;
+  protected isAlreadyPresent!: boolean;
 
   public constructor(
     private route: ActivatedRoute,
-    private prodServ: ProductService
+    private prodServ: ProductService,
+    private cart: Cart
   ){}
 
   public ngOnInit() : void {
@@ -25,6 +31,7 @@ export class ProductDetailsComponent {
       this.productName = String(params.get('name'));
     })
     this.getProductByName();
+    this.cart.setProducts(this.products);
   }
 
   public getProductByName() : void {
@@ -42,6 +49,13 @@ export class ProductDetailsComponent {
         console.log('get by name complete');
       }
     })
+  }
 
+  public add() : void {
+    console.log('1 ',this.product);
+    this.cart.addProduct(this.product);
+    console.log('cart prods : ', this.cart.getProducts());
+    console.log('taille array : ', this.cart.getProducts()?.length);
+    
   }
 }
