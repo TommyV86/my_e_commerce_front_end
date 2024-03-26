@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
+import { Cart } from 'src/app/model/cart/cart';
+import { Product } from 'src/app/model/product/product';
+import { CartToolUtility } from 'src/app/utility/cart-tool/cart-tool';
 
 @Component({
   selector: 'app-cart',
@@ -7,6 +10,25 @@ import { Component } from '@angular/core';
 })
 export class CartComponent {
 
+  protected products : Product[] | null = [];
+  protected totalSum : number = 0;
+
   // injecter la classe Cart
-  public constructor(){}
+  public constructor(
+    private cart: Cart,
+    private cartTool: CartToolUtility,
+    private ngZ: NgZone
+  ){}
+
+  protected ngOnInit() : void {
+    this.updateTable();
+  }
+
+  private updateTable() : void {
+    this.products = this.cart.getProducts();
+  }
+
+  protected getTotalSum() : number {
+    return this.cartTool.totalPrice(this.totalSum, this.products!, this.ngZ);
+  }
 }

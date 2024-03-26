@@ -4,6 +4,7 @@ import { Cart } from 'src/app/model/cart/cart';
 import { ProductExemplary } from 'src/app/model/product-exemplary/product-exemplary';
 import { Product } from 'src/app/model/product/product';
 import { ProductService } from 'src/app/service/product-service/product.service';
+import { CartToolUtility } from 'src/app/utility/cart-tool/cart-tool';
 
 @Component({
   selector: 'app-product-details',
@@ -17,12 +18,13 @@ export class ProductDetailsComponent {
   protected productName!: string;
   protected product!: Product;
   protected loading!: boolean;
-  protected isAlreadyPresent!: boolean;
+  protected isAlreadyPresent!: boolean | undefined;
 
   public constructor(
     private route: ActivatedRoute,
     private prodServ: ProductService,
-    private cart: Cart
+    private cart: Cart,
+    private cartTool: CartToolUtility
   ){}
 
   public ngOnInit() : void {
@@ -31,7 +33,7 @@ export class ProductDetailsComponent {
       this.productName = String(params.get('name'));
     })
     this.getProductByName();
-    this.cart.setProducts(this.products);
+    this.products = this.cart.getProducts();
   }
 
   public getProductByName() : void {
@@ -52,10 +54,8 @@ export class ProductDetailsComponent {
   }
 
   public add() : void {
-    console.log('1 ',this.product);
-    this.cart.addProduct(this.product);
-    console.log('cart prods : ', this.cart.getProducts());
-    console.log('taille array : ', this.cart.getProducts()?.length);
-    
+
+    this.cartTool.addProductOrIncrease(this.products, this.product);
+  
   }
 }

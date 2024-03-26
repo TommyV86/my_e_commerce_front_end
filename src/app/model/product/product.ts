@@ -6,9 +6,10 @@ export class Product {
     _name!: string | null;
     _description!: string | null;
     _price!: number | null;
+    _quantity: number = 0;
     _productExemplaries!: ProductExemplary[] | null;
     _typeProduct!: TypeProduct | null;
-
+    
 
     public getName() : string | null {
         return this._name;
@@ -36,6 +37,15 @@ export class Product {
 
     public setPrice(price: number) : this {
         this._price = price;
+        return this;
+    }
+
+    public getQuantity() : number {
+        return this._quantity;
+    }
+
+    public setQuantity(qty: number) : this {
+        this._quantity = qty;
         return this;
     }
 

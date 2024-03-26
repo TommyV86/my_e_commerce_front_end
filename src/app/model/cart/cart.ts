@@ -9,8 +9,8 @@ import { Product } from "../product/product";
 })
 export class Cart {
 
-    private _productExemplaries!: ProductExemplary[] | null;
-    private _products!: Product[] | null;
+    private _productExemplaries: ProductExemplary[] | null = [];
+    private _products: Product[] | null = [];
     private _person!: Person | null;
     private _booking!: Booking | null;
     private _totalSum!: number | null;
