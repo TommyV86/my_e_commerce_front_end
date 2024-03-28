@@ -43,7 +43,7 @@ export class CartToolUtility {
         prods?.forEach((pr: Product)=> {
             name === pr._name ? pr._quantity -= 1 : null;
             if(pr._quantity <= 0){
-                this.deleteProduct(prods, name);      
+                prods = this.deleteProduct(prods, name);      
             }
             console.log('actual ' + pr._name + ' qty: ', pr._quantity);
         });

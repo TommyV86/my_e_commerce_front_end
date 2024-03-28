@@ -54,8 +54,6 @@ export class ProductDetailsComponent {
   }
 
   public add() : void {
-
     this.cartTool.addProductOrIncrease(this.products, this.product);
-  
   }
 }
