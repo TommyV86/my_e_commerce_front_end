@@ -14,7 +14,7 @@ import { CartToolUtility } from 'src/app/utility/cart-tool/cart-tool';
 export class ProductDetailsComponent {
 
 
-  protected products : Product[] | null = [];
+  protected products : Product[] | null | undefined = [];
   protected productName!: string;
   protected product!: Product;
   protected loading!: boolean;

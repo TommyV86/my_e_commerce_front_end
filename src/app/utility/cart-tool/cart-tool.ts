@@ -10,7 +10,7 @@ export class CartToolUtility {
     private totalTemp! : number;
 
 
-    public addProductOrIncrease(prods: Product[] | null, prod: Product) : void {
+    public addProductOrIncrease(prods: Product[] | null | undefined, prod: Product) : void {
 
         this.isAlreadyPresent = prods?.some((pr: Product ) => pr._name === prod._name);
         if(!this.isAlreadyPresent){
@@ -25,6 +25,30 @@ export class CartToolUtility {
         console.log('taille array : ', prods?.length);
     }
 
+    public deleteProduct(prods: Product[] | null | undefined, name: string | null) : Product[] | null | undefined {
+        prods = prods?.filter((pr: Product) => pr._name != name);
+        console.log(name ,'deleted');   
+        return prods; 
+    }
+
+
+    public increaseProductIntoCart(name: string | null, prods: Product[] | null | undefined) : void {
+        prods?.forEach((pr: Product)=> {
+            name === pr._name ? pr._quantity += 1 : null;
+            console.log('actual ' + pr._name + ' qty: ', pr._quantity);
+        });
+    }
+
+    public decreaseProductIntoCart(name: string | null, prods: Product[] | null | undefined) : Product[] | null | undefined {
+        prods?.forEach((pr: Product)=> {
+            name === pr._name ? pr._quantity -= 1 : null;
+            if(pr._quantity <= 0){
+                this.deleteProduct(prods, name);      
+            }
+            console.log('actual ' + pr._name + ' qty: ', pr._quantity);
+        });
+        return prods;
+    }
 
 
     public totalPrice(total: number, prods: Product[], ng: NgZone) : number {

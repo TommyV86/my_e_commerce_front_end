@@ -20,10 +20,16 @@
         <img src="../../../assets/{{pr._name}}.jpg" class="card-img-top" alt="...">
       </th>
       <td>{{pr._name}}</td>
-      <td>{{pr._quantity}}</td>
+      <td>
+        <button (click)="decrease(pr._name)">-</button>
+        {{pr._quantity}}
+        <button (click)="increase(pr._name)">+</button>
+      </td>
       <td>{{pr._price}} €</td>
-      <td>{{pr._quantity * pr._price!}} €</td>
-      <td>x</td>
+      <td>{{pr._quantity * pr._price! | number: '1.2-2'}} €</td>
+      <td>
+        <button (click)="delete(pr._name)">x</button>
+      </td>
     </tr>
     
   </tbody>

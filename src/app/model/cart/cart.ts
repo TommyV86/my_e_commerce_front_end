@@ -10,7 +10,7 @@ import { Product } from "../product/product";
 export class Cart {
 
     private _productExemplaries: ProductExemplary[] | null = [];
-    private _products: Product[] | null = [];
+    private _products: Product[] | null | undefined = [];
     private _person!: Person | null;
     private _booking!: Booking | null;
     private _totalSum!: number | null;
@@ -33,11 +33,11 @@ export class Cart {
         this._productExemplaries = [];
     }
 
-    public getProducts() : Product[] | null {
+    public getProducts() : Product[] | null | undefined {
         return this._products;
     }
 
-    public setProducts(products : Product[] | null) : this {
+    public setProducts(products : Product[] | null | undefined) : this {
         this._products = products;
         return this;
     }
