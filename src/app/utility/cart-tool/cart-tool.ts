@@ -9,6 +9,13 @@ export class CartToolUtility {
     private isAlreadyPresent!: boolean | undefined;
     private totalTemp! : number;
 
+    public displayProducAndQty(name: string | null, qty: number) : void {
+        console.log('actual ' + name + ' qty: ', qty);
+    }
+
+    public checkProdNameForIncreaseQty(product:Product, prodName: string | null) : void {
+        product._name === prodName ? product._quantity += 1 : null;
+    }
 
     public addProductOrIncrease(prods: Product[] | null | undefined, prod: Product) : void {
 
@@ -18,7 +25,7 @@ export class CartToolUtility {
             prods?.push(prod);
         } else {
             prods?.forEach((pr: Product) => {
-                pr._name === prod._name ? pr._quantity += 1 : null;
+                this.checkProdNameForIncreaseQty(pr, prod._name);
             });
         };
         console.log('cart prods : ', prods);
@@ -34,29 +41,24 @@ export class CartToolUtility {
 
     public increaseProductIntoCart(name: string | null, prods: Product[] | null | undefined) : void {
         prods?.forEach((pr: Product)=> {
-            name === pr._name ? pr._quantity += 1 : null;
-            console.log('actual ' + pr._name + ' qty: ', pr._quantity);
+            this.checkProdNameForIncreaseQty(pr, name);
+            this.displayProducAndQty(pr._name, pr._quantity);
         });
     }
 
     public decreaseProductIntoCart(name: string | null, prods: Product[] | null | undefined) : Product[] | null | undefined {
         prods?.forEach((pr: Product)=> {
             name === pr._name ? pr._quantity -= 1 : null;
-            if(pr._quantity <= 0){
-                prods = this.deleteProduct(prods, name);      
-            }
-            console.log('actual ' + pr._name + ' qty: ', pr._quantity);
+            pr._quantity <= 0 ? prods = this.deleteProduct(prods, name) : null;      
+            this.displayProducAndQty(pr._name, pr._quantity);
         });
         return prods;
     }
 
 
     public totalPrice(total: number, prods: Product[], ng: NgZone) : number {
-
         this.totalTemp = 0;
         prods.forEach((pr: Product) => this.totalTemp += pr._price! * pr._quantity);
-        
         return ng.runOutsideAngular(() =>  total = this.totalTemp );
     }
-
 }
