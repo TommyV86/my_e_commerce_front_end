@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, ViewChild  } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Cart } from 'src/app/model/cart/cart';
 import { ProductExemplary } from 'src/app/model/product-exemplary/product-exemplary';
 import { Product } from 'src/app/model/product/product';
 import { ProductService } from 'src/app/service/product-service/product.service';
 import { CartToolUtility } from 'src/app/utility/cart-tool/cart-tool';
+import { ToastToolUtility } from 'src/app/utility/toast-tool/toast-tool';
 
 @Component({
   selector: 'app-product-details',
@@ -19,12 +20,16 @@ export class ProductDetailsComponent {
   protected product!: Product;
   protected loading!: boolean;
   protected isAlreadyPresent!: boolean | undefined;
+  @ViewChild('toast') toast!: ElementRef;
+  protected message!: string;
+  protected displayedSelectedProductName!: string | null;
 
   public constructor(
     private route: ActivatedRoute,
     private prodServ: ProductService,
     private cart: Cart,
-    private cartTool: CartToolUtility
+    private cartTool: CartToolUtility,
+    private toastTool: ToastToolUtility
   ){}
 
   public ngOnInit() : void {
@@ -41,6 +46,7 @@ export class ProductDetailsComponent {
     this.prodServ.getByName(this.productName).subscribe({
       next:(data: Product)=>{
         this.product = data;
+        this.displayedSelectedProductName = this.product._name;
         console.log('product', this.product);        
       },
       error:(e)=>{
@@ -54,6 +60,7 @@ export class ProductDetailsComponent {
   }
 
   public add() : void {
-    this.cartTool.addProductOrIncrease(this.products, this.product);
+    this.message = this.cartTool.addProductOrIncrease(this.products, this.product);
+    this.toastTool.showToast(this.toast);
   }
 }

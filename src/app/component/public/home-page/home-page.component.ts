@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Cart } from 'src/app/model/cart/cart';
 import { Product } from 'src/app/model/product/product';
 import { ProductService } from 'src/app/service/product-service/product.service';
 import { CartToolUtility } from 'src/app/utility/cart-tool/cart-tool';
+import { ToastToolUtility } from 'src/app/utility/toast-tool/toast-tool';
 
 @Component({
   selector: 'app-home-page',
@@ -11,14 +12,18 @@ import { CartToolUtility } from 'src/app/utility/cart-tool/cart-tool';
 })
 export class HomePageComponent {
 
-  protected products!: Product[];
+  protected displayedProducts!: Product[];
   protected loading!: boolean;
   private product!: Product;
+  @ViewChild('toast') toast!: ElementRef;
+  protected message!: string;
+  protected displayedSelectedProductName!: string | null;
 
   public constructor(
     private prodSev: ProductService,
     private cart: Cart,
-    private cartTool: CartToolUtility
+    private cartTool: CartToolUtility,
+    private toastTool: ToastToolUtility
   ){}
 
   //récupération d'une liste de products
@@ -31,7 +36,7 @@ export class HomePageComponent {
     this.prodSev.getAll().subscribe({
       next: (datas: Product[]) => {
         console.log('datas products fetched: ', datas);
-        this.products = datas;
+        this.displayedProducts = datas;
       },
       error: (e) => console.log(e),
       complete: () => {
@@ -43,9 +48,13 @@ export class HomePageComponent {
 
   public add(name: string | null) : void {
 
-    this.products?.forEach((pr: Product) => {
-      name === pr._name ? this.product = pr : null;
+    this.displayedProducts?.forEach((pr: Product) => {
+      if(name === pr._name){
+        this.product = pr;
+        this.displayedSelectedProductName = this.product._name;
+      }
     });
-    this.cartTool.addProductOrIncrease(this.cart.getProducts(), this.product);
+    this.message = this.cartTool.addProductOrIncrease(this.cart.getProducts(), this.product);
+    this.toastTool.showToast(this.toast);
   }
 }

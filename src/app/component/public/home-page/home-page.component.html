@@ -7,7 +7,7 @@
 
     <div class="card-container">
 
-        <div class="card" *ngFor="let product of products">
+        <div class="card" *ngFor="let product of displayedProducts">
 
             <img src="../../../assets/{{product._name}}.jpg" class="card-img-top" alt="...">
             <div class="card-body">
@@ -20,5 +20,17 @@
         </div>
 
     </div>
+
+    <!-- Toast element -->
+    <div #toast class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="10000">
+        <div class="toast-header">
+            <strong class="me-auto">{{displayedSelectedProductName}} {{message}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            <a class="back" [routerLink]="['client/cart']">accéder au panier</a>
+        </div>
+    </div>
+
 
 </div>

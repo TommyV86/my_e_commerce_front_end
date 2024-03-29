@@ -8,6 +8,7 @@ export class CartToolUtility {
 
     private isAlreadyPresent!: boolean | undefined;
     private totalTemp! : number;
+    private message!: string;
 
     public displayProducAndQty(name: string | null, qty: number) : void {
         console.log('actual ' + name + ' qty: ', qty);
@@ -17,19 +18,23 @@ export class CartToolUtility {
         product._name === prodName ? product._quantity += 1 : null;
     }
 
-    public addProductOrIncrease(prods: Product[] | null | undefined, prod: Product) : void {
+    public addProductOrIncrease(prods: Product[] | null | undefined, prod: Product) : string {
 
         this.isAlreadyPresent = prods?.some((pr: Product ) => pr._name === prod._name);
         if(!this.isAlreadyPresent){
             prod._quantity = 1;
             prods?.push(prod);
+            this.message = ' ajouté ';
         } else {
             prods?.forEach((pr: Product) => {
                 this.checkProdNameForIncreaseQty(pr, prod._name);
+                this.message = ' incrémenté ';
             });
         };
         console.log('cart prods : ', prods);
         console.log('taille array : ', prods?.length);
+
+        return this.message;
     }
 
     public deleteProduct(prods: Product[] | null | undefined, name: string | null) : Product[] | null | undefined {
