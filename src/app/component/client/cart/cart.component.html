@@ -21,14 +21,14 @@
       </th>
       <td>{{pr._name}}</td>
       <td>
-        <button (click)="decrease(pr._name)">-</button>
+        <button (click)="decrease(pr._name, pr._quantity)">-</button>
         {{pr._quantity}}
         <button (click)="increase(pr._name)">+</button>
       </td>
       <td>{{pr._price}} €</td>
       <td>{{pr._quantity * pr._price! | number: '1.2-2'}} €</td>
       <td>
-        <button (click)="delete(pr._name)">x</button>
+        <button (click)="delete(pr._name, pr._quantity)">x</button>
       </td>
     </tr>
     

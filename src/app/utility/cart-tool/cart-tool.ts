@@ -1,5 +1,7 @@
 import { Injectable, NgZone } from "@angular/core";
 import { Product } from "src/app/model/product/product";
+import { BadgeEventUtility } from "../badge-event/badge-event";
+import { Cart } from "src/app/model/cart/cart";
 
 @Injectable({
     providedIn: 'root'
@@ -9,6 +11,10 @@ export class CartToolUtility {
     private isAlreadyPresent!: boolean | undefined;
     private totalTemp! : number;
     private message!: string;
+
+    public constructor(
+        private badgeEvent: BadgeEventUtility,
+        private cartUser: Cart){}
 
     public displayProducAndQty(name: string | null, qty: number) : void {
         console.log('actual ' + name + ' qty: ', qty);
@@ -34,12 +40,18 @@ export class CartToolUtility {
         console.log('cart prods : ', prods);
         console.log('taille array : ', prods?.length);
 
+        this.badgeEvent.notifyBadgeEvent();
+
         return this.message;
     }
 
-    public deleteProduct(prods: Product[] | null | undefined, name: string | null) : Product[] | null | undefined {
+    public deleteProduct(prods: Product[] | null | undefined, name: string | null, qty: number) : Product[] | null | undefined {
+        this.cartUser.setQtyToDelete(qty);
         prods = prods?.filter((pr: Product) => pr._name != name);
         console.log(name ,'deleted');   
+
+        this.badgeEvent.notifyClearEvent();
+
         return prods; 
     }
 
@@ -49,14 +61,18 @@ export class CartToolUtility {
             this.checkProdNameForIncreaseQty(pr, name);
             this.displayProducAndQty(pr._name, pr._quantity);
         });
+        this.badgeEvent.notifyBadgeEvent();
     }
 
-    public decreaseProductIntoCart(name: string | null, prods: Product[] | null | undefined) : Product[] | null | undefined {
+    public decreaseProductIntoCart(name: string | null, prods: Product[] | null | undefined, qty: number) : Product[] | null | undefined {
         prods?.forEach((pr: Product)=> {
             name === pr._name ? pr._quantity -= 1 : null;
-            pr._quantity <= 0 ? prods = this.deleteProduct(prods, name) : null;      
+            pr._quantity <= 0 ? prods = this.deleteProduct(prods, name, qty) : null;      
             this.displayProducAndQty(pr._name, pr._quantity);
         });
+
+        this.badgeEvent.notifyDeleteEvent();
+
         return prods;
     }
 

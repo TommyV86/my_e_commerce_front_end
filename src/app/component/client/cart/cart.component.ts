@@ -37,13 +37,13 @@ export class CartComponent {
     this.cartTool.increaseProductIntoCart(name, this.products);
   }
 
-  protected decrease(name: string | null) : void {
-    this.cart.setProducts(this.cartTool.decreaseProductIntoCart(name, this.products));
+  protected decrease(name: string | null, qty: number) : void {
+    this.cart.setProducts(this.cartTool.decreaseProductIntoCart(name, this.products, qty));
     this.products = this.cart.getProducts();
   }
 
-  protected delete(name: string | null) : void {
-    this.cart.setProducts(this.cartTool.deleteProduct(this.products, name));
+  protected delete(name: string | null, qty: number) : void {
+    this.cart.setProducts(this.cartTool.deleteProduct(this.products, name, qty));
     this.products = this.cart.getProducts();
   }
 }

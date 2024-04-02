@@ -14,6 +14,7 @@ export class Cart {
     private _person!: Person | null;
     private _booking!: Booking | null;
     private _totalSum!: number | null;
+    private _qtyToDelete!: number;
 
 
     public getProductExamplaries() : ProductExemplary[] | null {
@@ -51,7 +52,6 @@ export class Cart {
     }
 
 
-
     public getPerson() : Person | null {
         return this._person;
     }
@@ -60,7 +60,6 @@ export class Cart {
         this._person = person;
         return this;
     }
-
 
 
     public getBooking() : Booking | null {
@@ -73,7 +72,6 @@ export class Cart {
     }
 
 
-
     public getTotalSum() : number | null {
         return this._totalSum;
     }
@@ -81,5 +79,14 @@ export class Cart {
     public setTotalSum(totalSum : number | null) : this {
         this._totalSum = totalSum;
         return this;
+    }
+
+
+    public getQtyToDelete(): number {
+        return this._qtyToDelete;
+    }
+
+    public setQtyToDelete(qty: number) : void {
+        this._qtyToDelete = qty;
     }
 }
