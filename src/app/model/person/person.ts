@@ -11,6 +11,18 @@ export class Person {
     private _comments!: Comment[] | null;
     private _bookings!: Booking[] | null;
 
+    public constructor( 
+        private firstname: string | null,
+        private lastname: string | null,
+        private email: string | null,
+        private password: string | null,
+    ){
+        this._firstname = firstname;
+        this._lastname = lastname;
+        this._email = email;
+        this._password = password;
+    }
+
     public getId() : number | null {
         return this._id;
     }

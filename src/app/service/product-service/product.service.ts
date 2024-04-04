@@ -8,7 +8,6 @@ import { ConstantUtility } from 'src/app/utility/constant/constant.utility';
 })
 export class ProductService {
 
-  private urlRoute : string = "product/";
   private urlGetAll : string = "all";
   private urlGetByName : string = "getByName";
 
@@ -19,10 +18,18 @@ export class ProductService {
 
 
   public getAll() : Observable<any> {
-    return this.httpClient.get(this.constantUtil.getLocalHost() + this.urlRoute + this.urlGetAll);
+    return this.httpClient.get(
+      this.constantUtil.getLocalHost() + 
+      this.constantUtil.getProductRoute() + 
+      this.urlGetAll
+    );
   }
 
   public getByName(name: string) : Observable<any>{
-    return this.httpClient.get(`${this.constantUtil.getLocalHost() + this.urlRoute + this.urlGetByName}?name=${name}`);
+    return this.httpClient.get(
+    `${this.constantUtil.getLocalHost() + 
+      this.constantUtil.getProductRoute() + 
+      this.urlGetByName}?name=${name}`
+    );
   }
 }
