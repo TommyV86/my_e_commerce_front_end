@@ -6,12 +6,12 @@ import * as bootstrap from 'bootstrap';
 })
 export class ToastToolUtility {
 
-    private toastElement!: any;
-    private bsToast: any;
+  private toastElement!: any;
+  private bsToast: any;
 
-    public showToast(toast: ElementRef) : void {
-      this.toastElement = toast.nativeElement;
-      this.bsToast = new bootstrap.Toast(this.toastElement);
-      this.bsToast.show();
+  public showToast(toast: ElementRef) : void {
+    this.toastElement = toast.nativeElement;
+    this.bsToast = new bootstrap.Toast(this.toastElement);
+    this.bsToast.show();
   }
 }
