@@ -10,6 +10,10 @@ import { ConstantUtility } from 'src/app/utility/constant/constant.utility';
 export class AuthenticationService {
 
   private urlSave : string = "save";
+  private body!: Object;
+  private isAuth: boolean = false;
+  private userRole: string | undefined | null;
+
 
   public constructor(
     private httpClient : HttpClient, 
@@ -24,5 +28,34 @@ export class AuthenticationService {
     );
   }
 
-  public login(){}
+  public login(email: string, password: string) : Observable<any> {
+    this.body = { email, password };
+
+    return this.httpClient.post(
+      this.constantUtil.getLocalHost() + 
+      this.constantUtil.getUrlLoginCheck(), this.body,
+      { headers: {'Content-Type': 'application/json'} }
+    )
+  }
+
+  public getAuthBool(): boolean {
+    return this.isAuth;
+  }
+
+  public setAuthenticatedBool(bool: boolean): boolean {
+    return this.isAuth = bool;
+  }
+
+  public getUserRole(): string | undefined | null {
+    return this.userRole;
+  }
+
+  public setUserRole(role: string | null): void {
+    this.userRole = role;
+  }
+
+  public logout() : void {
+    this.setAuthenticatedBool(false);
+    this.setUserRole(null);
+  }
 }

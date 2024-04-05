@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from './service/authentication/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'project_e_commerce';
+
+  public constructor(
+    private authServ: AuthenticationService
+  ){}
+
+  public ngOnInit() : void {
+    console.log(this.authServ.getAuthBool());
+    console.log(this.authServ.getUserRole());
+  }
 }

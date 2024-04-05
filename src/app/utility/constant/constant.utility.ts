@@ -10,6 +10,8 @@ export class ConstantUtility {
     private localhost: string = 'https://localhost:8000/';
     private urlProductRoute : string = "product/";
     private urlRegisterRoute : string = "registration/";
+    private urlLoginCheck : string = "api/login_check";
+    private urlLogout: string = 'app_logout';
     private httpOptions: any = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
@@ -30,6 +32,14 @@ export class ConstantUtility {
 
     public getRegisterRoute() : string {
         return this.urlRegisterRoute;
+    }
+
+    public getUrlLoginCheck() : string {
+        return this.urlLoginCheck;
+    }
+    
+    public getUrlLogout() : string {
+        return this.urlLogout;
     }
 
     public getToken() : string {
