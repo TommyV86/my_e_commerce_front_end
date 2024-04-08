@@ -1,27 +1,69 @@
-# ProjectECommerce
+# ProjectECommerceProcess
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.5.
+--------- BACK END --------
 
-## Development server
+1- conception mcd
+2- création de la base de données
+3- generation du projet en symfony :
+	a- configurer le fichier .env
+	b- générer les classes
+	c- appliquer les relations selon le mcd
+	d- migrer les classes
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+4- développement du systeme de register / log in
+5- développer les services pour la classe Person
+6- insérer des données pour Role, TypeProduct, Product
+7- simuler via postman connexion, ajout de produit exemplaire dans le panier:
+   -création + persistance panier avec user ok
+   -création prod ex en ajoutant ce panier ok
+8- implémentation du systeme de generation de token
 
-## Code scaffolding
+9- sécuriser en privant l'accès des routes existantes (à appliquer sur les futures routes)
+10-creér les classes datafixtures, les développer et les generer(comment)
+11-créer les controllers booking, comment
+12 - dto à mettre en place lorsque le front sera prêt
+13 - mapper à établir pour chaque dto
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+14- réadapter les services avec les dto :
+-booking ok
+-person ok
+-product ok
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
+--------- FRONT END --------
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+1-maquettage figma
+
+2-generer le projet en angular
+
+3-creer les models
+product ok
+typeproduct ok
+product ex ok
+cart ok
+person ok
+booking ok
+comment ok
+
+4-afficher les products dans la page home
+trouver les images correspondant aux products ok
+
+5-creer le composant detail + service front / back ok
+-application du lazy loading ok
+-creer le panier d'un user ok
+-creer fonctionnalité d'ajout ok
+-créer fonctionnalité de retrait de produit du panier, incrémentation et decrémentation ok
+-notification d'ajout de produit avec le nombre de produits dans le panier ok
+-création de page d'inscription ok
+-création de page de connexion ok
+
+
+
+-réadapter le header pour l'user connecté ok
+-créer un composant pour l'historique des achats

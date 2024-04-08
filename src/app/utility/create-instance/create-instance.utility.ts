@@ -7,11 +7,18 @@ import { Person } from 'src/app/model/person/person';
 })
 export class CreateInstanceUtility {
 
-  public constructor() { }
+  private person!: Person;
 
   public newUser(form: FormGroup) : Person {
 
     const {nom, prenom, email, password} = form.value;
-    return new Person(nom, prenom, email, password);
+
+    this.person = new Person();
+    this.person.setFirstname(nom)
+               .setLastname(prenom)
+               .setEmail(email)
+               .setPassword(password);
+
+    return this.person;
   }
 }

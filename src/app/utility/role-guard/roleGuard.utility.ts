@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { AuthenticationService } from '../service/authentication/authentication.service';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { AuthenticationService } from '../../service/authentication/authentication.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class RoleGuard implements CanActivate {
+export class RoleGuard {
 
     private expectedRole!: string;
 
@@ -18,12 +18,12 @@ export class RoleGuard implements CanActivate {
     public canActivate(route: ActivatedRouteSnapshot): boolean {
         this.expectedRole = route.data['role'];
 
-        if (this.authServ.getUserRole() != this.expectedRole || 
+        if (this.authServ.getUserRole() != this.expectedRole && 
             this.authServ.getUserRole() == undefined  && 
             !this.authServ.getAuthBool()) 
         {           
             console.error('RoleGuard: expectedRole not provided in route data');
-            this.router.navigate(['/']); // Redirect to an unauthorized page
+            this.router.navigate(['/login']);
             return false;
         }
         return true;

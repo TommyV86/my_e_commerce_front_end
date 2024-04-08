@@ -1,6 +1,10 @@
+import { Injectable } from "@angular/core";
 import { Booking } from "../booking/booking";
 import { Comment } from "../comment/comment";
 
+@Injectable({
+    providedIn: 'root'
+})
 export class Person {
 
     private _id!: number | null; 
@@ -10,18 +14,7 @@ export class Person {
     private _password!: string | null;
     private _comments!: Comment[] | null;
     private _bookings!: Booking[] | null;
-
-    public constructor( 
-        private firstname: string | null,
-        private lastname: string | null,
-        private email: string | null,
-        private password: string | null,
-    ){
-        this._firstname = firstname;
-        this._lastname = lastname;
-        this._email = email;
-        this._password = password;
-    }
+    private _token!: any;
 
     public getId() : number | null {
         return this._id;
@@ -87,6 +80,15 @@ export class Person {
 
     public setBookings(bookings : Booking[] | null) : this {
         this._bookings = bookings;
+        return this;
+    }
+
+    public getToken() : any {
+        return this._token;
+    }
+
+    public setToken(token: any) : this {
+        this._token = token;
         return this;
     }
 }
