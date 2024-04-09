@@ -10,6 +10,9 @@ export class ConstantUtility {
     private localhost: string = 'https://localhost:8000/';
     private urlProductRoute : string = "product/";
     private urlRegisterRoute : string = "registration/";
+    private urlCartRoute : string = "cart/";
+    private urlProductExRoute : string = "product_exemplary/";
+    private urlProfile : string = "profile/";
     private urlLoginCheck : string = "api/login_check";
     private urlLogout: string = 'app_logout';
     private httpOptions: any = {
@@ -32,6 +35,14 @@ export class ConstantUtility {
 
     public getRegisterRoute() : string {
         return this.urlRegisterRoute;
+    }
+
+    public getCartRoute() : string {
+        return this.urlCartRoute;
+    }
+
+    public getProfile() : string {
+        return this.urlProfile;
     }
 
     public getUrlLoginCheck() : string {

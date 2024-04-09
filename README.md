@@ -62,8 +62,10 @@ trouver les images correspondant aux products ok
 -notification d'ajout de produit avec le nombre de produits dans le panier ok
 -création de page d'inscription ok
 -création de page de connexion ok
-
-
-
 -réadapter le header pour l'user connecté ok
+
+
+-trouver pourquoi le token ne va pas dans le header
+-créer un service de validation de panier
+-réadapter le product ex controller au back end
 -créer un composant pour l'historique des achats
