@@ -40,7 +40,6 @@ export class LoginComponent {
     .subscribe({
       next: (res: any) => {
         this.constantUtil.setToken(res.token);
-        console.log(this.constantUtil.getToken());
         this.decodedToken = this.jwtUtil.decodeToken(res.token);
         console.log(this.decodedToken);
         

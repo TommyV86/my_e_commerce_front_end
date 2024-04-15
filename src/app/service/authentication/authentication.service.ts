@@ -35,7 +35,9 @@ export class AuthenticationService {
     return this.httpClient.post(
       this.constantUtil.getLocalHost() + 
       this.constantUtil.getUrlLoginCheck(), this.body,
-      { headers: {'Content-Type': 'application/json'} }
+      { headers: {'Content-Type': 'application/json'},
+        withCredentials: true 
+      }
     )
   }
 
