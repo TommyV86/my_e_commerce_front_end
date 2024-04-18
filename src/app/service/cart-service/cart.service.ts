@@ -21,7 +21,7 @@ export class CartService {
       this.constUtil.getLocalHost() +
       this.constUtil.getCartRoute() +
       this.constUtil.getProfile() +
-      this.urlSave, cart
+      this.urlSave, cart, this.constUtil.getHttpOptions()
     );
   }
 }

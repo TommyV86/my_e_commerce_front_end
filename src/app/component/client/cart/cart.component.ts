@@ -57,6 +57,9 @@ export class CartComponent {
   }
 
   protected onSubmit() : void {
+    this.cart.setPerson(this.person);
+    this.cart.setTotalSum(this.getTotalSum());
+    console.log(this.cart);
     
     this.cartServ.save(this.cart).subscribe({
       next: (res: any) => {
