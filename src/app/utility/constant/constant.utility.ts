@@ -33,6 +33,10 @@ export class ConstantUtility {
         return this.urlProductRoute;
     }
 
+    public getProductExRoute() : string {
+        return this.urlProductExRoute;
+    }
+
     public getRegisterRoute() : string {
         return this.urlRegisterRoute;
     }

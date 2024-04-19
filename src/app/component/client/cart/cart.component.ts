@@ -4,6 +4,7 @@ import { Cart } from 'src/app/model/cart/cart';
 import { Person } from 'src/app/model/person/person';
 import { Product } from 'src/app/model/product/product';
 import { CartService } from 'src/app/service/cart-service/cart.service';
+import { ProductExemplaryService } from 'src/app/service/product-exemplary-service/product-exemplary.service';
 import { CartToolUtility } from 'src/app/utility/cart-tool/cart-tool';
 
 @Component({
@@ -26,6 +27,7 @@ export class CartComponent {
     private person: Person,
     private cartTool: CartToolUtility,
     private cartServ: CartService,
+    private prodExServ: ProductExemplaryService,
     private ngZ: NgZone,
   ){}
 
@@ -56,22 +58,21 @@ export class CartComponent {
     this.products = this.cart.getProducts();
   }
 
-  protected onSubmit() : void {
+  protected async onSubmit() : Promise<void> {
     this.cart.setPerson(this.person);
     this.cart.setTotalSum(this.getTotalSum());
     console.log(this.cart);
     
-    this.cartServ.save(this.cart).subscribe({
-      next: (res: any) => {
-        //redirection au login
-        console.log('back end resp :', res);
-        this.message = 'commande prise en compte !'; 
-      },
-      error: (e: any) => {
-        this.message = 'une erreur est survenue, veuillez recommencer'; 
-        console.log(e)
-      },
-      complete: () => console.log('Save cart process ended')
-    })
+    try {
+
+      this.cart.setPerson(this.person);
+      this.cart.setTotalSum(this.getTotalSum());
+      
+      await this.cartServ.save(this.cart);
+      this.prodExServ.save(this.cart);
+
+    } catch (error: any) {
+      console.log(error);    
+    }  
   }
 }

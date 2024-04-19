@@ -28,9 +28,14 @@ trouver les images correspondant aux products ok
 -création de page d'inscription ok
 -création de page de connexion ok
 -réadapter le header pour l'user connecté ok
+-trouver pourquoi le token ne va pas dans le header - ok
+-service de persistance du panier et des produits exemplaires - ok
 
 
--trouver pourquoi le token ne va pas dans le header
--créer un service de validation de panier
--réadapter le product ex controller au back end
+-créer un service de validation de panier:
+    -developper un service de sauvegarde de panier - ok
+    -developper un service de sauvegarde de produits dans le panier 
+    -réadapter le product ex controller au back end
+
+    
 -créer un composant pour l'historique des achats
