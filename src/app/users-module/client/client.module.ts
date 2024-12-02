@@ -4,11 +4,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { ClientRoutingModule } from './client-routing.module';
 import { CartComponent } from 'src/app/component/client/cart/cart.component';
+import { SuccessCommandComponent } from 'src/app/component/client/success-command/success-command.component';
 
 
 @NgModule({
   declarations: [
-    CartComponent
+    CartComponent,
+    SuccessCommandComponent
   ],
   imports: [
     CommonModule,

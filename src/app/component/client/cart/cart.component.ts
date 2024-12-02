@@ -1,5 +1,6 @@
 import { Component, NgZone } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Cart } from 'src/app/model/cart/cart';
 import { Person } from 'src/app/model/person/person';
 import { Product } from 'src/app/model/product/product';
@@ -29,6 +30,7 @@ export class CartComponent {
     private cartServ: CartService,
     private prodExServ: ProductExemplaryService,
     private ngZ: NgZone,
+    private router: Router
   ){}
 
   protected ngOnInit() : void {
@@ -59,17 +61,22 @@ export class CartComponent {
   }
 
   protected async onSubmit() : Promise<void> {
-    this.cart.setPerson(this.person);
-    this.cart.setTotalSum(this.getTotalSum());
     console.log(this.cart);
     
     try {
 
       this.cart.setPerson(this.person);
       this.cart.setTotalSum(this.getTotalSum());
+      this.router.navigate(['../client/success-command']);
       
       await this.cartServ.save(this.cart);
       this.prodExServ.save(this.cart);
+      //redirection sur une page de confirmation de la commande ok
+      //vider le panier ok
+
+      //todo
+      //ajouter une url de redirection dans la page success command
+      //créer composant user info
 
     } catch (error: any) {
       console.log(error);    

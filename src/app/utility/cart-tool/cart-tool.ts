@@ -76,6 +76,10 @@ export class CartToolUtility {
         return prods;
     }
 
+    public clearProducts(cart: Cart){
+        cart.clearProducts();
+        this.badgeEvent.notifySubmitEvent();
+    }
 
     public totalPrice(total: number, prods: Product[], ng: NgZone) : number {
         this.totalTemp = 0;

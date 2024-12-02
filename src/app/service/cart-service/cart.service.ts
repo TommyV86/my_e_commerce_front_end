@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Cart } from 'src/app/model/cart/cart';
+import { CartToolUtility } from 'src/app/utility/cart-tool/cart-tool';
 import { ConstantUtility } from 'src/app/utility/constant/constant.utility';
 
 @Injectable({
@@ -14,12 +14,13 @@ export class CartService {
 
   public constructor(
     private httpClient: HttpClient,
-    private constUtil: ConstantUtility
+    private constUtil: ConstantUtility,
+    private cartTool: CartToolUtility
   ) { }
 
   public save(cart: Cart) : Promise<string> {
 
-    return new Promise<string>((resolve, reject) => {
+    return new Promise<string>(() => {
 
       this.httpClient.post(
         this.constUtil.getLocalHost() +
@@ -31,12 +32,11 @@ export class CartService {
           //redirection au login
           console.log('back end resp :', res);
           this.message = 'commande prise en compte !'; 
-          resolve(this.message);
+          this.cartTool.clearProducts(cart);
         },
         error: (e: any) => {
           this.message = 'une erreur est survenue, veuillez recommencer'; 
           console.log(e);
-          reject(e);
         },
         complete: () => console.log('Save cart process ended')
       });
