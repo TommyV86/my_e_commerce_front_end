@@ -30,12 +30,13 @@ trouver les images correspondant aux products ok
 -réadapter le header pour l'user connecté ok
 -trouver pourquoi le token ne va pas dans le header - ok
 -service de persistance du panier et des produits exemplaires - ok
-
-
 -créer un service de validation de panier:
     -developper un service de sauvegarde de panier - ok
-    -developper un service de sauvegarde de produits dans le panier 
-    -réadapter le product ex controller au back end
+    -developper un service de sauvegarde de produits dans le panier ok
+    -réadapter le product ex controller au back end ok 
 
-    
+
+
+
+-vider le panier avec un message toast lors de la validation du panier    
 -créer un composant pour l'historique des achats
