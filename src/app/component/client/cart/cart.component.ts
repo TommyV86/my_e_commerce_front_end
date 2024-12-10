@@ -61,23 +61,18 @@ export class CartComponent {
   }
 
   protected async onSubmit() : Promise<void> {
+    
     console.log(this.cart);
     
     try {
 
       this.cart.setPerson(this.person);
       this.cart.setTotalSum(this.getTotalSum());
+      
+      this.cartServ.save(this.cart);
+      this.prodExServ.save(this.cart);
       this.router.navigate(['../client/success-command']);
       
-      await this.cartServ.save(this.cart);
-      this.prodExServ.save(this.cart);
-      //redirection sur une page de confirmation de la commande ok
-      //vider le panier ok
-
-      //todo
-      //ajouter une url de redirection dans la page success command
-      //créer composant user info
-
     } catch (error: any) {
       console.log(error);    
     }  
