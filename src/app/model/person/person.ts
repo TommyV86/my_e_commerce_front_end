@@ -20,6 +20,11 @@ export class Person {
         return this._id;
     }
 
+    public setId(id: number) : this {
+        this._id = id;
+        return this;
+    }
+
     
     public getFirstname() : string | null{
         return this._firstname;

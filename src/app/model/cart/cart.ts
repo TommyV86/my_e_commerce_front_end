@@ -9,15 +9,15 @@ import { Product } from "../product/product";
 })
 export class Cart {
 
-    private _productExemplaries: ProductExemplary[] | null = [];
-    private _products: Product[] | null | undefined = [];
-    private _person!: Person | null;
-    private _booking!: Booking | null;
-    private _totalSum!: number | null;
-    private _qtyToDelete!: number;
+    public _productExemplaries: ProductExemplary[] = [];
+    public _products: Product[] | null | undefined = [];
+    public _person!: Person | null;
+    public _booking!: Booking | null;
+    public totalSum!: number | null;
+    public _qtyToDelete!: number;
 
 
-    public getProductExamplaries() : ProductExemplary[] | null {
+    public getProductExamplaries() : ProductExemplary[] | null | undefined {
         return this._productExemplaries;
     }
 
@@ -73,11 +73,11 @@ export class Cart {
 
 
     public getTotalSum() : number | null {
-        return this._totalSum;
+        return this.totalSum;
     }
 
     public setTotalSum(totalSum : number | null) : this {
-        this._totalSum = totalSum;
+        this.totalSum = totalSum;
         return this;
     }
 

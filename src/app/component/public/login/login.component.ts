@@ -49,7 +49,8 @@ export class LoginComponent {
             this.authServ.setUserRole(r);
 
             this.person.setEmail(this.decodedToken.username)
-                       .setToken(this.decodedToken);
+                       .setToken(this.decodedToken)
+                       .setId(this.decodedToken.id);
             console.log(this.person);
           }
         });

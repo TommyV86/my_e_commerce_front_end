@@ -12,7 +12,10 @@
             <div class="badge" [ngClass]="{ 'badgeNumber': isAdded }">{{badge}}</div>
             <div *ngIf="email != null && email != undefined; else notLogged">
                 <li class="nav-item">
-                    <div class="email" routerLink="../client/account">Bonjour {{email}} !</div>
+                    <a class="nav-link active">Bonjour {{email}} !</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" routerLink="../client/account">Mes listes commandées</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" (click)="logout()">Logout</a>

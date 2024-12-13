@@ -1,1 +1,12 @@
-<p>account works!</p>
+<div class="container">
+    <br><br><br><br><br><br>
+
+
+    <div *ngFor="let cart of cartsToDisplay">
+        <div *ngFor="let prodEx of cart._productExemplaries">
+            <h1>{{prodEx._imageName}} x {{prodEx._quantity}}</h1>
+        </div>
+        <div>{{cart.totalSum}}</div>
+    </div>
+
+</div>

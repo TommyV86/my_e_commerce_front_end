@@ -3,10 +3,10 @@ import { Product } from "../product/product";
 
 export class ProductExemplary {
 
-    private _quantity!: number | null;
-    private _imageName!: string| null;
-    private _cart!: Cart | null;
-    private _product!: Product | null;
+    public _quantity!: number | null;
+    public _imageName!: string| null;
+    public _cart!: Cart | null;
+    public _product!: Product | null;
 
 
 

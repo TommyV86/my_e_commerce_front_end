@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Cart } from 'src/app/model/cart/cart';
 import { CartToolUtility } from 'src/app/utility/cart-tool/cart-tool';
 import { ConstantUtility } from 'src/app/utility/constant/constant.utility';
@@ -10,6 +11,7 @@ import { ConstantUtility } from 'src/app/utility/constant/constant.utility';
 export class CartService {
 
   private urlSave : string = "create";
+  private urlGetAllByIdClient : string = "get_all_by_id";
   private message! : string;
 
   public constructor(
@@ -41,5 +43,14 @@ export class CartService {
         complete: () => console.log('Save cart process ended')
       });
     });
+  }
+
+  public getAllByIdClient(id: number | null): Observable<any>{
+    return this.httpClient.get(
+    `${this.constUtil.getLocalHost() + 
+      this.constUtil.getCartRoute() +
+      this.constUtil.getProfile() +
+      this.urlGetAllByIdClient}?id=${id}`
+    );
   }
 }
