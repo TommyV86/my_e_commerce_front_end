@@ -13,7 +13,7 @@ export class Cart {
     public _products: Product[] | null | undefined = [];
     public _person!: Person | null;
     public _booking!: Booking | null;
-    public totalSum!: number | null;
+    public _totalSum!: number | null;
     public _qtyToDelete!: number;
 
 
@@ -73,11 +73,11 @@ export class Cart {
 
 
     public getTotalSum() : number | null {
-        return this.totalSum;
+        return this._totalSum;
     }
 
     public setTotalSum(totalSum : number | null) : this {
-        this.totalSum = totalSum;
+        this._totalSum = totalSum;
         return this;
     }
 

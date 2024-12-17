@@ -5,7 +5,7 @@ export class Booking {
 
     private _id!: number | null; 
     private _status!: boolean | null;
-    private _date_booking!: Date | null;
+    public _dateBooking!: Date | null;
     private _person!: Person | null;
     private _cart!: Cart | null;
 
@@ -22,18 +22,14 @@ export class Booking {
         return this;
     }
 
-
-
     public getDateBooking() : Date | null{
-        return this._date_booking;
+        return this._dateBooking;
     }
 
     public setDateBooking(date_booking : Date | null) : this {
-        this._date_booking= date_booking;
+        this._dateBooking= date_booking;
         return this;
     }
-
-
 
     public getPerson() : Person | null {
         return this._person;

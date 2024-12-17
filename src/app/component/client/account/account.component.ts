@@ -13,8 +13,8 @@ import { CartService } from 'src/app/service/cart-service/cart.service';
 export class AccountComponent {
 
   //extraire uniquement les tableaux de _products de chaque panier
-  protected cart: Cart = new Cart();
   protected cartsToDisplay: Cart[] = [];
+  protected dateBooking!: Date | null | undefined;
 
   public constructor(
     private user: Person,
@@ -32,13 +32,10 @@ export class AccountComponent {
         console.log('datas: ', datas);
         datas.forEach((cart: Cart)=> {
           if (cart._productExemplaries) {
-            this.cart = cart;
-            this.cart._productExemplaries = cart._productExemplaries;
-            this.cart.totalSum = cart.totalSum;
-            this.cartsToDisplay.push(this.cart);
+            this.cartsToDisplay.push(cart);
           }
         })
-        console.log('datas products from carts fetched : ', this.cartsToDisplay);
+        console.log('datas products from carts fetched : ', this.cartsToDisplay);        
       },
       error: (e) => console.log(e),
       complete: () => {
