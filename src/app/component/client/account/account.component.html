@@ -1,15 +1,14 @@
 <div class="container">
-    <br><br><br><br><br><br>
 
 
     <div *ngFor="let cart of cartsToDisplay">
         <div *ngFor="let prodEx of cart._productExemplaries">
             <div>
                 {{ prodEx._imageName }} x {{ prodEx._quantity }} |
-                prix unitaire : {{ prodEx._product?._price }}
+                prix unitaire : {{ prodEx._product?._price }} €
 
                 <div *ngIf="(prodEx._quantity || 0) > 1">
-                    prix multiple : {{ (prodEx._product?._price || 0) * (prodEx._quantity || 0) }}
+                    prix multiple : {{ (prodEx._product?._price || 0) * (prodEx._quantity || 0) }} €
                 </div>
             </div>
          </div>

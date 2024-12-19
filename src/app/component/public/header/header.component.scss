@@ -33,3 +33,9 @@ header{
     font-size: medium;
     margin-top: 6px;
 }
+
+.inline-nav {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    margin-top: -15px;
+}

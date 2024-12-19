@@ -2,15 +2,15 @@
 
     <div class="nav-content">
 
-        <a class="title" routerLink=""><h1>my e_commerce</h1></a>
+        <a class="title" routerLink=""><h1>My E_commerce</h1></a>
 
         <ul class="nav">
             
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" routerLink="../client/cart">panier</a>
+                <a class="nav-link active" aria-current="page" routerLink="../client/cart">Panier</a>
             </li>
             <div class="badge" [ngClass]="{ 'badgeNumber': isAdded }">{{badge}}</div>
-            <div *ngIf="email != null && email != undefined; else notLogged">
+            <div *ngIf="email != null && email != undefined; else notLogged" class="inline-nav">
                 <li class="nav-item">
                     <a class="nav-link active">Bonjour {{email}} !</a>
                 </li>

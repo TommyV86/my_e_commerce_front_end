@@ -35,6 +35,7 @@ export class HeaderComponent {
 
     this.badgeEvent.decreaseBadge$.subscribe(()=>{
       if(this.badge > 0) this.badge -= 1;
+      if(this.badge <= 0) this.isAdded = false;
     })
 
     this.badgeEvent.clearBadge$.subscribe(()=>{

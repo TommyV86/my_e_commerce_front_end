@@ -67,7 +67,7 @@ export class CartToolUtility {
     public decreaseProductIntoCart(name: string | null, prods: Product[] | null | undefined, qty: number) : Product[] | null | undefined {
         prods?.forEach((pr: Product)=> {
             name === pr._name ? pr._quantity -= 1 : null;
-            pr._quantity <= 0 ? prods = this.deleteProduct(prods, name, qty) : null;      
+            pr._quantity <= 0 ? prods = prods?.filter((pr: Product) => pr._name != name) : null;
             this.displayProducAndQty(pr._name, pr._quantity);
         });
 
