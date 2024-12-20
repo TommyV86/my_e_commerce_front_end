@@ -1,39 +1,38 @@
 <header>
-
     <div class="nav-content">
+        
 
+        <!-- Dropdown toggle button for smaller screens -->
+        <button class="dropdown-btn" (click)="toggleDropdown()">
+            ☰ 
+        </button>
         <a class="title" routerLink=""><h1>My E_commerce</h1></a>
-
-        <ul class="nav">
-            
+        <ul class="nav" [ngClass]="{ 'show': isDropdownVisible }">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" routerLink="../client/cart">Panier</a>
+                <a class="nav-link active" aria-current="page" routerLink="../client/cart" (click)="toggleDropdown()">Panier</a>
             </li>
             <div class="badge" [ngClass]="{ 'badgeNumber': isAdded }">{{badge}}</div>
+
             <div *ngIf="email != null && email != undefined; else notLogged" class="inline-nav">
                 <li class="nav-item">
                     <a class="nav-link active">Bonjour {{email}} !</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" routerLink="../client/account">Mes listes commandées</a>
+                    <a class="nav-link active" routerLink="../client/account" (click)="toggleDropdown()">Mes listes commandées</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" (click)="logout()">Logout</a>
+                    <a class="nav-link active" aria-current="page" (click)="logout()" (click)="toggleDropdown()">Logout</a>
                 </li>
             </div>
 
             <ng-template #notLogged>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="login">Connexion</a>
+                    <a class="nav-link active" aria-current="page" routerLink="login" (click)="toggleDropdown()">Connexion</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="create-account">Inscription</a>
+                    <a class="nav-link" routerLink="create-account" (click)="toggleDropdown()">Inscription</a>
                 </li>
             </ng-template>
-            
-
         </ul>
-
     </div>
-        
 </header>

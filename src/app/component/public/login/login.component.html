@@ -1,10 +1,12 @@
-<p>login works!</p>
+<div class="main-form">
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-    <input formControlName="email" class="form-control" type="email"  placeholder="email ..." aria-label="email" required>
-    <input formControlName="password" class="form-control" type="password"  placeholder="password ..." aria-label="password" required>
+        <input formControlName="email" class="form-control" type="email"  placeholder="email ..." aria-label="email" required>
+        <input formControlName="password" class="form-control" type="password"  placeholder="password ..." aria-label="password" required>
 
-    <button [disabled]="form.invalid" class="btn" type="submit" >connexion</button>
+        <button [disabled]="form.invalid" class="btn" type="submit" >connexion</button>
 
-</form>
+    </form>
+    
+</div>

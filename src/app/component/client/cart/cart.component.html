@@ -1,46 +1,47 @@
-<h2>panier</h2>
-<a [routerLink]="['']">retour</a>
+<div class="container">
+  <a [routerLink]="['']">retour</a>
 
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-  <table class="table">
+    <table class="table">
 
-    <thead>
-      <tr>
-        <th scope="col">produit</th>
-        <th scope="col">label</th>
-        <th scope="col">quantité au kg</th>
-        <th scope="col">prix unitaire</th>
-        <th scope="col">prix quantité</th>
-        <th scope="col">retirer</th>
-      </tr>
-    </thead>
-    <tbody>
+      <thead>
+        <tr>
+          <th scope="col">produit</th>
+          <th scope="col">label</th>
+          <th scope="col">quantité au kg</th>
+          <th scope="col">prix unitaire</th>
+          <th scope="col">prix quantité</th>
+          <th scope="col">retirer</th>
+        </tr>
+      </thead>
+      <tbody>
 
-      <tr *ngFor="let pr of products">
-        <th scope="row">
-          <img src="../../../assets/{{pr._name}}.jpg" class="card-img-top" alt="...">
-        </th>
-        <td>{{pr._name}}</td>
-        <td>
-          <div (click)="decrease(pr._name, pr._quantity)">-</div>
-          {{pr._quantity}}
-          <div (click)="increase(pr._name)">+</div>
-        </td>
-        <td>{{pr._price}} €</td>
-        <td>{{pr._quantity * pr._price! | number: '1.2-2'}} €</td>
-        <td>
-          <button (click)="delete(pr._name, pr._quantity)">x</button>
-        </td>
-      </tr>
-      
-    </tbody>
+        <tr *ngFor="let pr of products">
+          <th scope="row">
+            <img src="../../../assets/{{pr._name}}.jpg" class="card-img-top" alt="...">
+          </th>
+          <td>{{pr._name}}</td>
+          <td>
+            <div (click)="decrease(pr._name, pr._quantity)">-</div>
+            {{pr._quantity}}
+            <div (click)="increase(pr._name)">+</div>
+          </td>
+          <td>{{pr._price}} €</td>
+          <td>{{pr._quantity * pr._price! | number: '1.2-2'}} €</td>
+          <td>
+            <button (click)="delete(pr._name, pr._quantity)">x</button>
+          </td>
+        </tr>
+        
+      </tbody>
 
-    <h3>Prix total : {{getTotalSum() | number: '1.2-2'}} €</h3>
-      
-    <button [disabled]="form.invalid" class="btn" type="submit" >valider mon panier</button>
+      <h3>Prix total : {{getTotalSum() | number: '1.2-2'}} €</h3>
+        
+      <button [disabled]="form.invalid" class="btn" type="submit" >valider mon panier</button>
 
-  </table>
+    </table>
 
-</form>
+  </form>
+</div>

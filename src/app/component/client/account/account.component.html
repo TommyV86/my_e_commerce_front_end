@@ -1,20 +1,27 @@
 <div class="container">
 
+    <div *ngIf="cartsToDisplay == null; else notNull">
+        <h1>Vous n'avez fait aucune commande</h1>
+        <button routerLink="">faire une commande</button>
+    </div>
 
-    <div *ngFor="let cart of cartsToDisplay">
-        <div *ngFor="let prodEx of cart._productExemplaries">
-            <div>
-                {{ prodEx._imageName }} x {{ prodEx._quantity }} |
-                prix unitaire : {{ prodEx._product?._price }} €
+    <ng-template #notNull>
+        <div *ngFor="let cart of cartsToDisplay">
+            <div *ngFor="let prodEx of cart._productExemplaries">
+                <div>
+                    {{ prodEx._imageName }} x {{ prodEx._quantity }} |
+                    prix unitaire : {{ prodEx._product?._price }} €
 
-                <div *ngIf="(prodEx._quantity || 0) > 1">
-                    prix multiple : {{ (prodEx._product?._price || 0) * (prodEx._quantity || 0) }} €
+                    <div *ngIf="(prodEx._quantity || 0) > 1">
+                        prix multiple : {{ (prodEx._product?._price || 0) * (prodEx._quantity || 0) }} €
+                    </div>
                 </div>
             </div>
-         </div>
-        <h3>Prix total : {{cart._totalSum}} €</h3>
-        <h3>Date de commande : {{cart._booking?._dateBooking | date: 'dd/MM/yyyy HH:mm:ss'}}</h3>
-        <br><br><br>
-    </div>
+            <h3>Prix total : {{cart._totalSum}} €</h3>
+            <h3>Date de commande : {{cart._booking?._dateBooking | date: 'dd/MM/yyyy HH:mm:ss'}}</h3>
+            <br><br><br>
+        </div>
+    </ng-template>
+    
 
 </div>

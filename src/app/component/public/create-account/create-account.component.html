@@ -1,16 +1,16 @@
-<p>create-account works!</p>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<div class="main-form">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-    <input formControlName="nom" class="form-control" type="text"  placeholder="nom ..." aria-label="name" required>
-    <input formControlName="prenom" class="form-control" type="text"  placeholder="prénom ..." aria-label="lastname" required>
-    <input formControlName="email" class="form-control" type="email"  placeholder="email ..." aria-label="email" required>
-    <input formControlName="password" class="form-control" type="password"  placeholder="password ..." aria-label="password" required>
+        <input formControlName="nom" class="form-control" type="text"  placeholder="nom ..." aria-label="name" required>
+        <input formControlName="prenom" class="form-control" type="text"  placeholder="prénom ..." aria-label="lastname" required>
+        <input formControlName="email" class="form-control" type="email"  placeholder="email ..." aria-label="email" required>
+        <input formControlName="password" class="form-control" type="password"  placeholder="password ..." aria-label="password" required>
 
-    <button [disabled]="form.invalid" class="btn" type="submit" >m'inscrire</button>
+        <button [disabled]="form.invalid" class="btn" type="submit" >m'inscrire</button>
 
-</form>
-
+    </form>
+</div>
 <!-- Toast element -->
 <div #toast class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="10000">
     <div class="toast-header">

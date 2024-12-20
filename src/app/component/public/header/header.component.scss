@@ -1,41 +1,86 @@
-header{
-    margin-bottom: 5rem;
-}
-
 .nav-content {
-    position:fixed;
+    position: fixed;
     top: 0;
     z-index: 1000;
     width: 100%;
     display: flex;
-    justify-content:end;
+    justify-content: end;
     background-color: rgb(255, 189, 127);
 }
 
-.title{
+.title {
     margin-right: auto;
     text-decoration: none;
     color: black;
 }
 
-.badge{
+.nav {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.badge {
     font-size: 1.5rem;
     color: rgb(165, 165, 165);
     margin-left: -1.5rem;
 }
 
-.badgeNumber{
+.badgeNumber {
     font-size: 1.5rem;
     color: rgb(56, 184, 5);
 }
 
-.email{
-    font-size: medium;
-    margin-top: 6px;
-}
-
 .inline-nav {
     display: flex;
-    align-items: center; /* Align items vertically */
-    margin-top: -15px;
+    align-items: center;
+}
+
+.dropdown-btn {
+    display: none; /* Hidden by default */
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+
+@media (max-width: 768px) {
+    .dropdown-btn {
+        display: block; /* Show dropdown button */
+    }
+
+    .nav {
+        display: none; /* Hide navigation links */
+        flex-direction: column;
+        background-color: rgb(255, 189, 127);
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        padding: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav.show {
+        display: flex; /* Show links when dropdown is toggled */
+    }
+
+    .inline-nav {
+        flex-direction: column; /* Stack items in the dropdown */
+        align-items:baseline;
+
+    }
+
+    .badge {
+        margin-right: 12em;
+    }
+
+    .title{
+        margin-left: 3em;
+    }
 }

@@ -17,6 +17,7 @@ export class HeaderComponent {
   protected isConnected : boolean = false;
   protected email!: string | null | undefined;
   public isAdded : boolean = false;
+  public isDropdownVisible: boolean = false;
 
   public constructor(
     private badgeEvent: BadgeEventUtility,
@@ -60,5 +61,9 @@ export class HeaderComponent {
   protected logout() : void {
     this.authServ.logout();
     window.location.reload();
+  }
+
+  protected toggleDropdown(): void {
+    this.isDropdownVisible = !this.isDropdownVisible;
   }
 }
